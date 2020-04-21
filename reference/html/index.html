@@ -5205,7 +5205,30 @@ As a result accessing underlying properties take the form <code>target.&lt;prope
 </div>
 </div>
 <div class="sect3">
-<h4 id="rest-repositories"><a class="anchor" href="#rest-repositories"></a><a class="link" href="#rest-repositories">12.5.4. REST Repositories</a></h4>
+<h4 id="empty-result-handling-in-repository-methods"><a class="anchor" href="#empty-result-handling-in-repository-methods"></a><a class="link" href="#empty-result-handling-in-repository-methods">12.5.4. Empty result handling in repository methods</a></h4>
+<div class="paragraph">
+<p>Java <code>java.util.Optional</code> can be used to indicate the potential absence of a return value.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, query methods can return the result without a wrapper.
+In that case the absence of a query result is indicated by returning <code>null</code>.
+Repository methods returning collections are guaranteed never to return <code>null</code> but rather the corresponding empty collection.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can enable nullability checks. For more details please see <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#null-safety">Spring Framework’s nullability docs</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rest-repositories"><a class="anchor" href="#rest-repositories"></a><a class="link" href="#rest-repositories">12.5.5. REST Repositories</a></h4>
 <div class="paragraph">
 <p>When running with Spring Boot, repositories can be exposed as REST services by simply adding this dependency to your pom file:</p>
 </div>
@@ -6821,7 +6844,30 @@ Methods that return <code>Slice</code>, on the other hand, don&#8217;t execute a
 </div>
 </div>
 <div class="sect3">
-<h4 id="query-by-example"><a class="anchor" href="#query-by-example"></a><a class="link" href="#query-by-example">13.5.2. Query by example</a></h4>
+<h4 id="empty-result-handling-in-repository-methods-2"><a class="anchor" href="#empty-result-handling-in-repository-methods-2"></a><a class="link" href="#empty-result-handling-in-repository-methods-2">13.5.2. Empty result handling in repository methods</a></h4>
+<div class="paragraph">
+<p>Java <code>java.util.Optional</code> can be used to indicate the potential absence of a return value.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, query methods can return the result without a wrapper.
+In that case the absence of a query result is indicated by returning <code>null</code>.
+Repository methods returning collections are guaranteed never to return <code>null</code> but rather the corresponding empty collection.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can enable nullability checks. For more details please see <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#null-safety">Spring Framework’s nullability docs</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="query-by-example"><a class="anchor" href="#query-by-example"></a><a class="link" href="#query-by-example">13.5.3. Query by example</a></h4>
 <div class="paragraph">
 <p>Query by Example is an alternative querying technique.
 It enables dynamic query generation based on a user-provided object. See <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#query-by-example">Spring Data Documentation</a> for details.</p>
@@ -6862,7 +6908,7 @@ It enables dynamic query generation based on a user-provided object. See <a href
 </div>
 </div>
 <div class="sect3">
-<h4 id="custom-gql-query-methods"><a class="anchor" href="#custom-gql-query-methods"></a><a class="link" href="#custom-gql-query-methods">13.5.3. Custom GQL query methods</a></h4>
+<h4 id="custom-gql-query-methods"><a class="anchor" href="#custom-gql-query-methods"></a><a class="link" href="#custom-gql-query-methods">13.5.4. Custom GQL query methods</a></h4>
 <div class="paragraph">
 <p>Custom GQL queries can be mapped to repository methods in one of two ways:</p>
 </div>
@@ -7083,7 +7129,7 @@ annotated with <code>DiscriminatorField</code>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="transactions-3"><a class="anchor" href="#transactions-3"></a><a class="link" href="#transactions-3">13.5.4. Transactions</a></h4>
+<h4 id="transactions-3"><a class="anchor" href="#transactions-3"></a><a class="link" href="#transactions-3">13.5.5. Transactions</a></h4>
 <div class="paragraph">
 <p>These transactions work very similarly to those of <code>DatastoreOperations</code>, but is specific to the repository&#8217;s domain type and provides repository functions instead of template functions.</p>
 </div>
@@ -7109,7 +7155,7 @@ public String doWorkInsideTransaction() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="projections-2"><a class="anchor" href="#projections-2"></a><a class="link" href="#projections-2">13.5.5. Projections</a></h4>
+<h4 id="projections-2"><a class="anchor" href="#projections-2"></a><a class="link" href="#projections-2">13.5.6. Projections</a></h4>
 <div class="paragraph">
 <p>Spring Data Cloud Datastore supports <a href="https://docs.spring.io/spring-data/data-commons/docs/current/reference/html/#projections">projections</a>.
 You can define projection interfaces based on domain types and add query methods that return them in your repository:</p>
@@ -7146,7 +7192,7 @@ As a result, accessing underlying properties take the form <code>target.&lt;prop
 </div>
 </div>
 <div class="sect3">
-<h4 id="rest-repositories-2"><a class="anchor" href="#rest-repositories-2"></a><a class="link" href="#rest-repositories-2">13.5.6. REST Repositories</a></h4>
+<h4 id="rest-repositories-2"><a class="anchor" href="#rest-repositories-2"></a><a class="link" href="#rest-repositories-2">13.5.7. REST Repositories</a></h4>
 <div class="paragraph">
 <p>When running with Spring Boot, repositories can be exposed as REST services by simply adding this dependency to your pom file:</p>
 </div>
