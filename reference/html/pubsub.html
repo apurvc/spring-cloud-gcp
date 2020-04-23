@@ -234,6 +234,63 @@ Pub/Sub credentials</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.max-outstanding-element-count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of outstanding elements to keep in memory before enforcing flow control.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unlimited</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.max-outstanding-request-bytes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of outstanding bytes to keep in memory before enforcing flow control.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unlimited</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.limit-exceeded-behavior</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The behavior when the specified limits are exceeded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Block</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.element-count-threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The element count threshold to use for batching.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.request-byte-threshold</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The request byte threshold to use for batching.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.delay-threshold-seconds</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The delay threshold to use for batching.
+After this amount of time has elapsed (counting from the first element added), the elements will be wrapped up in a batch and sent.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables batching.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following properties are available to control retry in case of fixable failures during the gRPC call to Cloud Pub/Sub server.
+They do <strong>not</strong> control message redelivery; only message acknowledgement deadline can be used to extend or shorten the amount of time until Pub/Sub attempts redelivery.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher].retry.total-timeout-seconds</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TotalTimeout has ultimate control over how long the logic should keep trying the remote call until it gives up completely.
 The higher the total timeout, the more retries can be attempted.</p></td>
@@ -294,49 +351,6 @@ The timeout of the previous call is multiplied by the RpcTimeoutMultiplier to ca
 can&#8217;t increase the RPC timeout higher than this amount.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.max-outstanding-element-count</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of outstanding elements to keep in memory before enforcing flow control.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unlimited</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.max-outstanding-request-bytes</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of outstanding bytes to keep in memory before enforcing flow control.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unlimited</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.[subscriber,publisher.batching].flow-control.limit-exceeded-behavior</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The behavior when the specified limits are exceeded.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Block</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.element-count-threshold</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The element count threshold to use for batching.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.request-byte-threshold</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The request byte threshold to use for batching.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.delay-threshold-seconds</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The delay threshold to use for batching.
-After this amount of time has elapsed (counting from the first element added), the elements will be wrapped up in a batch and sent.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unset (threshold does not apply)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.publisher.batching.enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables batching.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 </tbody>
 </table>
